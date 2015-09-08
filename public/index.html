@@ -1,19 +1,21 @@
 <!doctype html>
-<html lang="en" ng-app="app">
-<head>
-    <meta charset="UTF-8">
-    <title>Iceberg Search</title>
-</head>
-<body>
+<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+	    <title>Iceberg Search</title>
+	    <link href="css/now-tv.css" rel="stylesheet" media="all" />
+	</head>
 
-<div ng-controller="MainCtrl">
+	<body>
 
-	<h1>Iceberg Movies</h1>
+		<!-- Render the app via an include so as not to get that annoying flicker
+		of partially rendered views while angular is loading -->
+		<ng-include src="'views/app.html'"></ng-include>
 
-</div>
+		<script src="js/lib/angular.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/app.factory.data.js"></script>
+		<script src="js/app.controller.main.js"></script>
 
-<script src="js/lib/angular.js"></script>
-<script src="js/app.js"></script>
-
-</body>
+	</body>
 </html>

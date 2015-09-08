@@ -1,0 +1,38 @@
+<main ng-controller="MainCtrl" class="nt-wrapper">
+	<h1>Iceberg Movies</h1>
+	<div class="nt-row">
+		<div class="nt-column">
+			<input type="search" name="search" placeholder="Search movies" ng-model="search" class="nt-input" />
+		</div>
+		<div class="nt-column">
+			<span ng-show="showSearchPrompt" class="ng-hide-animate nt-message--info nt_search-prompt">Enter at least three characters to begin search</span>
+		</div>
+	</div>
+	<p ng-show="showResultCount" class="ng-hide-animate nt-message--note nt_result-count"><b>Matched {{movieListings.length}} of {{total}} movies total</b></p>
+	<p ng-show="!!!movieListings.length" class="ng-hide-animate nt-message--note nt_no-items"><b>No matching items</b></p>
+	
+	<table ng-show="!!movieListings.length" class="nt-table ng-hide-animate nt_listings">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Year</th>
+				<th>Rating</th>
+				<th>Duration</th>
+				<th>Actors</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="movie in movieListings">
+				<td>{{movie.title}}</td>
+				<td>{{movie.year}}</td>
+				<td>{{movie.rating}}</td>
+				<td>{{movie.duration}}</td>
+				<td>
+					<span ng-repeat="actor in movie.actors.list">{{actor.name}}, </span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+</main>
