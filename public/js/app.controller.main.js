@@ -31,10 +31,16 @@
 
         //request and bind data to view
         DataFcty.getJson().then(function(data) {
+
+            data.movies.forEach(function(value) {
+                //convert seconds to minutes
+                value.duration = value.duration/60;
+            });
+
             //Apply filters to the array
             movieListings = orderBy(data.movies, 'title');
             movieListings = limitTo(movieListings, 20);
-            
+
             $scope.movieListings = movieListings;
             $scope.total = data.movies.length;
         });
