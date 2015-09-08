@@ -45,8 +45,9 @@
             $scope.total = data.movies.length;
         });
 
-        //Expose the validity of our search string to control the prompt display
+        //Hide messages
         $scope.showSearchPrompt = false;
+        $scope.showResultCount = false;
 
         //reapply the filter as the search value changes
         $scope.$watch('search', function (newVal, oldVal) {
