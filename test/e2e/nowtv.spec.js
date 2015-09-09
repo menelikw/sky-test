@@ -16,6 +16,8 @@ describe('Now TV movie listing', function() {
 		search = element.all(by.model('search'));
 	});
 
+
+
 	it('should be ordered by title and limited to 20', function() {
 		//hmmm - bit of a rigid check
 		listings.all(by.tagName('td')).then(function(elm) {
@@ -35,25 +37,24 @@ describe('Now TV movie listing', function() {
 	});
 
 	describe('Now TV movie listing messaging', function() {
+		var resultCount = $('.nt_result-count'),
+			message = $('.nt_no-items');
 
 		it('should show result count when matches are found', function() {
-			var resultCount = $('.nt_result-count');
-
 			search.sendKeys('28 Days Later').then(function() {
 				expect(resultCount.getAttribute('class')).not.toMatch(ngHideCls);
 				search.clear();
 			});
+		});
 
+		it('should hide result count when no matches are found', function() {
 			search.sendKeys(deadSearch).then(function() {
 				expect(resultCount.getAttribute('class')).toMatch(ngHideCls);
 				search.clear();
 			});
-
 		});
 
 		it('should show correct result count when matches are found', function() {
-			var resultCount = $('.nt_result-count');
-
 			//Searching for 'Later' just because it returns more than 1 result
 			search.sendKeys('Later').then(function() {
 				listings.count().then(function(count) {
@@ -62,30 +63,31 @@ describe('Now TV movie listing', function() {
 					search.clear();
 				});
 			});
+		});
 
+		it('should hide "no results" message when view loads', function() {
+			//Should be hidden on load
+			expect(message.getAttribute('class')).toMatch(ngHideCls);
 		});
 
 		it('should show "no results" message when no matches found', function() {
-			var message = $('.nt_no-items');
-
-			//Should be hidden on load
-			expect(message.getAttribute('class')).toMatch(ngHideCls);
-
 			search.sendKeys(deadSearch).then(function() {
 				expect(message.getAttribute('class')).not.toMatch(ngHideCls);
 				search.clear();			
 			});
+		});
 
+		it('should hide "no results" message when matches found', function() {
 			search.sendKeys('25th').then(function() {
 				expect(message.getAttribute('class')).toMatch(ngHideCls);
 				search.clear();
 			});
-
 		});
 
 	});
 
 	describe('Now TV movie listing search', function() {
+		var prompt = $('.nt_search-prompt');
 
 		it('should be case sensitive', function() {
 			//Lowercase search should be fruitless
@@ -99,17 +101,18 @@ describe('Now TV movie listing', function() {
 			search.clear();
 		});
 
-		it('should display a prompt when input contains < 3 but more than 0 characters', function() {
-			var prompt = $('.nt_search-prompt');
-
-			//Should not be displayed on load
+		it('should hide prompt when view loads / input is empty', function() {
 			expect(prompt.isDisplayed()).toBe(false);
+		});
 
+		it('should hide prompt when input contains 3 or more characters', function() {
 			search.sendKeys('25t').then(function() {
 				expect(prompt.getAttribute('class')).toMatch(ngHideCls);
 				search.clear();			
 			});
+		});
 
+		it('should show prompt when input contains < 3 characters', function() {
 			search.sendKeys('25').then(function() {
 				expect(prompt.getAttribute('class')).not.toMatch(ngHideCls);
 				search.clear();			
@@ -119,14 +122,9 @@ describe('Now TV movie listing', function() {
 				expect(prompt.getAttribute('class')).not.toMatch(ngHideCls);
 				search.clear();
 			});
-
 		});
 
 		it('should filter the list when search string contains 3 or more characters', function() {
-
-			//We atart off showing all results (up to 20)
-			expect(listings.count()).toBe(20);
-
 			//A search with no results should have no listings
 			search.sendKeys(deadSearch).then(function() {
 				expect(listings.count()).toBe(0);			
@@ -138,7 +136,6 @@ describe('Now TV movie listing', function() {
 				expect(listings.count()).toBe(1);
 				search.clear();			
 			});
-
 		});
 	});
 
