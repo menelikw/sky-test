@@ -7,9 +7,9 @@ Write acceptance tests in Protractor and unit tests as you see fit.
 
 You can, but are not obliged to, use the seed project we provided with this task.
 
-** As a Now TV Customer
-** I would like to filter a list of movies using a search query box
-** So that I can easily find movies I'd like to watch.
+ - As a Now TV Customer
+ - I would like to filter a list of movies using a search query box
+ - So that I can easily find movies I'd like to watch.
 
 Please create a UI that contains a list of movies, and a search box which is capable of filtering. There are no stylesheets included on the page, creating a pretty UI is a bonus but is not mandatory.
 
@@ -30,10 +30,8 @@ Please create a UI that contains a list of movies, and a search box which is cap
  - When the search phrase does not match any movies, the following message should be displayed: 'No matching items'
 
 
+###Commands to run:
 
-
-Commands to run:
-
- npm run start - starts local server
- npm run unit - run the karma unit tests
- npm run e2e - run the protractor tests 
+ - ```npm run start``` - starts local server
+ - ```npm run unit``` - run the karma unit tests
+ - ```npm run e2e``` - run the protractor tests 
