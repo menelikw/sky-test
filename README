@@ -1,4 +1,6 @@
-Dev in Test - Recruitment Task
+Live example available at: http://menelik.co.uk/sky-test/
+
+##Dev in Test - Recruitment Task
 
 Implement the following user story in JavaScript / AngularJS, using TDD/BDD/ATDD.
 Write acceptance tests in Protractor and unit tests as you see fit.
@@ -11,7 +13,8 @@ You can, but are not obliged to, use the seed project we provided with this task
 
 Please create a UI that contains a list of movies, and a search box which is capable of filtering. There are no stylesheets included on the page, creating a pretty UI is a bonus but is not mandatory.
 
-Acceptance Criteria
+##Acceptance Criteria
+
  - On page load, you should display first 20 movies, ordered alphabetically by title
  - For each movie list: title, year, rating, duration in minutes and all actors
 
